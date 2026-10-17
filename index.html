@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student ID — Classroom Prototype</title>
-    <meta name="description" content="Independent classroom UI prototype. Fictional student data, no login, no real card verification or transactions.">
-    <meta name="referrer" content="no-referrer">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com; style-src 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src https://cdn.jsdelivr.net; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UEH Digital Student ID - Prototype</title>
     
     <!-- Google Sans -->
-    
+    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- OwlCarousel CSS -->
@@ -107,7 +104,7 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Product Sans', sans-serif;
             background-color: #E9ECEF;
             display: flex;
             justify-content: center;
@@ -319,12 +316,27 @@
         .confirm-btn:active { transform: scale(0.95); }
         .btn-cancel { background: #E9ECEF; color: #333; }
         .btn-confirm { background: #dc3545; color: white; }
-    .demo-label {position:absolute;top:54px;left:0;right:0;z-index:2500;text-align:center;background:#fff3cd;color:#513d00;font: bold 10px/1.5 Arial;padding:5px 2px;pointer-events:none;} .app-header {padding-top:40px;} .login-screen {padding-top:65px;} .screens-wrapper {min-height:0;} #mainApp {min-height:0;flex:1;height:auto!important;overflow:hidden;} @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;}} </style>
+
+        /* Form styling for Link Bank */
+        .form-control-custom {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-top: 5px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-control-custom:focus {
+            border-color: var(--primary-color);
+        }
+    </style>
 </head>
 <body>
 
     <div class="app-container">
-        <div class="demo-label">CLASSROOM DEMO · NOT AN OFFICIAL UEH SERVICE</div><div class="dynamic-island"></div>
+        <div class="dynamic-island"></div>
         <div class="status-bar">
             <span>9:41</span>
             <span><i class="ti ti-wifi"></i> <i class="ti ti-battery-filled"></i></span>
@@ -332,22 +344,22 @@
 
         <!-- LOGIN SCREEN -->
         <div id="loginScreen" class="login-screen">
-            <div class="logo-lg text-center fw-bold">STUDENT ID<br><small>CLASSROOM DEMO</small></div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Logo_UEH_xanh.png/1280px-Logo_UEH_xanh.png" alt="UEH Logo" class="logo-lg">
             
-            <h4 class="text-white mb-4 fw-bold text-center">Digital Student ID — Demo</h4><p class="text-white text-center">Independent classroom project, not an official UEH service. All data is fictional. No account or password is required.</p>
+            <h4 class="text-white mb-4 fw-bold text-center">Digital Student ID</h4>
             
             <button class="login-btn btn-login-id" onclick="performLogin()">
-                <i class="ti ti-user-scan"></i> Explore demo
+                <i class="ti ti-user-scan"></i> Login with Student ID
             </button>
             <button class="login-btn btn-login-nfc" onclick="performLogin()">
-                <i class="ti ti-nfc"></i> Preview NFC simulation
+                <i class="ti ti-nfc"></i> Scan Physical Card (NFC)
             </button>
         </div>
 
         <!-- MAIN APP -->
         <div id="mainApp" style="opacity: 0; display: flex; flex-direction: column; height: 100%; transition: opacity 0.5s ease;">
             <div class="app-header">
-                <span class="header-logo" style="color:#004C45;font-weight:bold">STUDENT ID · DEMO</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Logo_UEH_xanh.png/1280px-Logo_UEH_xanh.png" alt="UEH" class="header-logo">
                 <div class="logout-btn" onclick="showLogoutConfirm()">
                     <i class="ti ti-logout"></i>
                 </div>
@@ -360,11 +372,11 @@
                     <div class="screen-content">
                         <div class="card-box id-card animate-item">
                             <div class="id-photo-container">
-                                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMjQwIiB2aWV3Qm94PSIwIDAgMjQwIDI0MCI+PHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNDAiIHJ4PSIyNCIgZmlsbD0iI2UwZWZlYyIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjgzIiByPSIzOSIgZmlsbD0iIzQ0ODQ3OCIvPjxwYXRoIGQ9Ik00MCAyMjB2LTI1YTgwIDgwIDAgMCAxIDE2MCAwdjI1IiBmaWxsPSIjNDQ4NDc4Ii8+PHRleHQgeD0iMTIwIiB5PSIyMzMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiPkZJQ1RJT05BTCBTVFVERU5UPC90ZXh0Pjwvc3ZnPg==" alt="Nguyen Van A">
+                                <img src="https://cdn2.tuoitre.vn/471584752817336320/2024/7/23/3ccd33ac-26e2-4a37-9903-4dda4eea3e1b-17217519687181717569526.jpg" alt="Nguyen Van A">
                             </div>
                             
                             <h4 class="fw-bold mb-1">NGUYEN VAN A</h4>
-                            <p class="text-muted mb-1">ID: DEMO-0001</p>
+                            <p class="text-muted mb-1">ID: 31254321</p>
                             <div class="status-badge">
                                 <span class="status-dot"></span>Active
                             </div>
@@ -377,7 +389,7 @@
                     <div class="screen-content">
                         <div class="card-box animate-item">
                             <div class="profile-avatar-wrapper">
-                                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMjQwIiB2aWV3Qm94PSIwIDAgMjQwIDI0MCI+PHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNDAiIHJ4PSIyNCIgZmlsbD0iI2UwZWZlYyIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjgzIiByPSIzOSIgZmlsbD0iIzQ0ODQ3OCIvPjxwYXRoIGQ9Ik00MCAyMjB2LTI1YTgwIDgwIDAgMCAxIDE2MCAwdjI1IiBmaWxsPSIjNDQ4NDc4Ii8+PHRleHQgeD0iMTIwIiB5PSIyMzMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiPkZJQ1RJT05BTCBTVFVERU5UPC90ZXh0Pjwvc3ZnPg==" alt="Student Avatar">
+                                <img src="https://cdn2.tuoitre.vn/471584752817336320/2024/7/23/3ccd33ac-26e2-4a37-9903-4dda4eea3e1b-17217519687181717569526.jpg" alt="Student Avatar">
                             </div>
                             
                             <div class="info-row">
@@ -386,7 +398,7 @@
                             </div>
                             <div class="info-row">
                                 <span class="info-label">Student ID</span>
-                                <span class="info-value">DEMO-0001</span>
+                                <span class="info-value">31254321</span>
                             </div>
                             <div class="info-row">
                                 <span class="info-label">Date of Birth</span>
@@ -414,9 +426,9 @@
                                 <div class="action-icon"><i class="ti ti-wallet"></i></div>
                                 Add to Wallet
                             </a>
-                            <a href="javascript:void(0)" class="action-btn" onclick="openLink()">
-                                <div class="action-icon"><i class="ti ti-link"></i></div>
-                                Link
+                            <a href="javascript:void(0)" class="action-btn" onclick="openLinkBank()">
+                                <div class="action-icon"><i class="ti ti-building-bank"></i></div>
+                                Link Bank
                             </a>
                             <a href="javascript:void(0)" class="action-btn" onclick="startLocating()">
                                 <div class="action-icon"><i class="ti ti-map-pin"></i></div>
@@ -457,7 +469,7 @@
             
             <p class="info-label mb-1">CARD STATUS:</p>
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 id="detailStatus" class="fw-bold text-success mb-0">ACTIVE (DEMO)</h2>
+                <h2 class="fw-bold text-success mb-0">ACTIVE</h2>
                 <i class="ti ti-circle-check-filled text-success" style="font-size: 32px;"></i>
             </div>
             
@@ -473,7 +485,7 @@
             <div class="alert alert-secondary d-flex align-items-start gap-2 mb-0" role="alert" style="border-radius: 15px; font-size: 14px;">
                 <i class="ti ti-alert-triangle-filled text-warning" style="font-size: 20px;"></i>
                 <div>
-                    <strong>Demo notice:</strong> Fictional sample data. This prototype cannot verify identity or perform transactions.
+                    <strong>Safety notice:</strong> Do not share screenshots of your Digital Student ID with others.
                 </div>
             </div>
         </div>
@@ -481,11 +493,11 @@
         <!-- 2. Bottom Sheet: QR Code -->
         <div class="bottom-sheet" id="qrSheet">
             <div class="sheet-drag-handle"></div>
-            <h5 class="fw-bold text-center mb-3">QR Interface Demo</h5>
+            <h5 class="fw-bold text-center mb-3">Student Verification QR</h5>
             
-            <div class="text-center p-4" style="border:2px dashed #004C45;border-radius:15px"><strong>QR PREVIEW</strong><p class="mb-0 mt-2">Demo placeholder — no valid credential</p></div>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=UEH-31254321-NGUYENVANA" alt="QR Code" class="qr-code-img">
             
-            <p class="fw-bold text-center mt-3 mb-1">Classroom preview only. This is not valid identification.</p>
+            <p class="fw-bold text-center mt-3 mb-1">Present this QR code for student identity verification.</p>
             <p class="text-muted text-center small">Prototype only – no real verification system is connected.</p>
             
             <button class="btn-dark-green mt-3" onclick="closeSheets()">
@@ -501,36 +513,46 @@
                     <i class="ti ti-nfc nfc-pulse-icon" style="font-size: 60px; color: var(--primary-color);"></i>
                 </div>
                 <h5 class="fw-bold">Add to Wallet</h5>
-                <p class="text-muted">Simulating the NFC interface. No physical card or device access is needed.</p>
+                <p class="text-muted">Please hold your physical card near the back of your phone to scan NFC...</p>
             </div>
             <div id="nfcSuccessUI" class="text-center" style="display: none;">
                 <div class="mb-3 mt-2">
                     <i class="ti ti-circle-check-filled text-success" style="font-size: 60px;"></i>
                 </div>
                 <h5 class="fw-bold text-success">Success!</h5>
-                <p class="text-muted">Simulation complete. No card was scanned or linked.</p>
+                <p class="text-muted">NFC scanned and card linked successfully.</p>
             </div>
         </div>
 
-        <!-- 4. Popup: Generic Link -->
-        <div class="confirm-overlay" id="linkOverlay">
-            <div class="confirm-box" id="linkBox">
-                <div id="linkLoadingUI">
-                    <div class="mb-3">
-                        <div class="spinner-border" style="color: var(--primary-color); width: 3rem; height: 3rem;" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </div>
-                    <h5 class="fw-bold">Please Wait...</h5>
-                    <p class="text-muted mb-0">Displaying a simulated linking animation.<br><small class='text-danger'>*Note: Due to security reasons, this is a simulated action for the prototype only.</small></p>
+        <!-- 4. Bottom Sheet: Link Bank -->
+        <div class="bottom-sheet" id="linkBankSheet">
+            <div class="sheet-drag-handle"></div>
+            <div id="bankFormUI">
+                <h5 class="fw-bold text-center mb-3">Link Bank Account</h5>
+                <p class="text-muted text-center small mb-3">Enter your bank card details to link with your student account.</p>
+                
+                <div class="mb-3">
+                    <label class="info-label" style="font-size: 13px;">Bank Name</label>
+                    <input type="text" class="form-control-custom" id="bankNameInput" placeholder="e.g., Vietcombank, Techcombank...">
                 </div>
-                <div id="linkSuccessUI" style="display: none;">
-                    <div class="mb-3">
-                        <i class="ti ti-circle-check-filled text-success" style="font-size: 60px;"></i>
-                    </div>
-                    <h5 class="fw-bold text-success">Success!</h5>
-                    <p class="text-muted mb-0">Simulation complete. No account was linked.</p>
+                <div class="mb-3">
+                    <label class="info-label" style="font-size: 13px;">Card Number / Account Number</label>
+                    <input type="text" class="form-control-custom" id="bankCardInput" placeholder="9704 xxxx xxxx xxxx">
                 </div>
+                <div class="mb-3">
+                    <label class="info-label" style="font-size: 13px;">Cardholder Name</label>
+                    <input type="text" class="form-control-custom" id="bankHolderInput" placeholder="NGUYEN VAN A">
+                </div>
+                
+                <button class="btn-dark-green mt-2" onclick="submitLinkBank()">Confirm Link</button>
+            </div>
+
+            <div id="bankSuccessUI" class="text-center py-4" style="display: none;">
+                <div class="mb-3 mt-2">
+                    <i class="ti ti-circle-check-filled text-success" style="font-size: 60px;"></i>
+                </div>
+                <h5 class="fw-bold text-success">Linked Successfully!</h5>
+                <p class="text-muted">Your bank account has been connected to your student profile.</p>
             </div>
         </div>
 
@@ -542,14 +564,14 @@
                         <i class="ti ti-radar radar-spin-icon" style="font-size: 50px; color: var(--primary-color);"></i>
                     </div>
                     <h5 class="fw-bold">Locating...</h5>
-                    <p class="text-muted mb-0">Playing a location demo. Your location is not accessed.</p>
+                    <p class="text-muted mb-0">Searching for signal from your card...</p>
                 </div>
                 <div id="locatedUI" style="display: none;">
                     <div class="mb-3">
                         <i class="ti ti-map-pin-filled text-success" style="font-size: 50px;"></i>
                     </div>
-                    <h5 class="fw-bold text-success">Demo Location</h5>
-                    <p class="text-muted mb-0">Example location: Campus B (fictional result).</p>
+                    <h5 class="fw-bold text-success">Card Found!</h5>
+                    <p class="text-muted mb-0">Your card is near: Campus B, UEH.</p>
                     <button class="btn btn-dark-green mt-3 w-100" onclick="closeLocate()">Close</button>
                 </div>
             </div>
@@ -562,7 +584,7 @@
                     <i class="ti ti-shield-lock" id="lockConfirmIcon" style="font-size: 50px; color: #dc3545; background: #ffe6e6; padding: 15px; border-radius: 50%;"></i>
                 </div>
                 <h5 class="fw-bold" id="lockConfirmTitle">Lock Card</h5>
-                <p class="text-muted mb-0" id="lockConfirmDesc">Simulate locking this sample card? No real transactions are affected.</p>
+                <p class="text-muted mb-0" id="lockConfirmDesc">Are you sure you want to lock this card? Transactions will be temporarily suspended.</p>
                 
                 <div id="lockSuccessMessage" class="alert alert-success mt-3 mb-0" style="display: none; font-size: 14px;">
                     Operation successful!
@@ -581,8 +603,8 @@
                 <div class="mb-3">
                     <i class="ti ti-logout" style="font-size: 50px; color: #dc3545; background: #ffe6e6; padding: 15px; border-radius: 50%;"></i>
                 </div>
-                <h5 class="fw-bold">Exit Demo</h5>
-                <p class="text-muted mb-0">Return to the demo welcome screen?</p>
+                <h5 class="fw-bold">Log Out</h5>
+                <p class="text-muted mb-0">Are you sure you want to log out?</p>
                 <div class="confirm-actions">
                     <button class="confirm-btn btn-cancel" onclick="closeLogoutConfirm()">Cancel</button>
                     <button class="confirm-btn btn-confirm" onclick="performLogout()">Confirm</button>
@@ -687,23 +709,26 @@
             }, 5000); 
         }
 
-        // 2. LINK FEATURE 
-        function openLink() {
-            $('#linkLoadingUI').show();
-            $('#linkSuccessUI').hide();
-            
-            $('#linkOverlay').css('display', 'flex');
-            setTimeout(() => { $('#linkBox').addClass('show'); }, 10);
+        // 2. LINK BANK (HIỂN THỊ FORM VÀ XÁC NHẬN THÀNH CÔNG BẤT KỂ NHẬP GÌ)
+        function openLinkBank() {
+            $('#bankFormUI').show();
+            $('#bankSuccessUI').hide();
+            // Reset input values if needed
+            $('#bankNameInput').val('');
+            $('#bankCardInput').val('');
+            $('#bankHolderInput').val('');
+            openSheet('#linkBankSheet');
+        }
 
+        function submitLinkBank() {
+            $('#bankFormUI').fadeOut(200, function() {
+                $('#bankSuccessUI').fadeIn(200);
+            });
+
+            // Tự động đóng form sau 1.5 giây
             setTimeout(() => {
-                $('#linkLoadingUI').hide();
-                $('#linkSuccessUI').fadeIn(300);
-                
-                setTimeout(() => {
-                    $('#linkBox').removeClass('show');
-                    setTimeout(() => { $('#linkOverlay').css('display', 'none'); }, 300);
-                }, 2000);
-            }, 3000);
+                closeSheets();
+            }, 1500);
         }
 
         // 3. LOCATE CARD
@@ -731,12 +756,12 @@
         function showLockConfirm() {
             if (!isCardLocked) {
                 $('#lockConfirmTitle').text('Lock Card');
-                $('#lockConfirmDesc').text('Simulate locking this sample card? No real transactions are affected.');
+                $('#lockConfirmDesc').text('Are you sure you want to lock this card? Transactions will be temporarily suspended.');
                 $('#lockConfirmIcon').removeClass('ti-lock-open text-success').addClass('ti-shield-lock text-danger').css({'color': '#dc3545', 'background': '#ffe6e6'});
                 $('#lockConfirmBtnAction').css('background', '#dc3545').text('Lock Card');
             } else {
                 $('#lockConfirmTitle').text('Unlock Card');
-                $('#lockConfirmDesc').text('Simulate unlocking this sample card?');
+                $('#lockConfirmDesc').text('Do you want to unlock your card to resume normal usage?');
                 $('#lockConfirmIcon').removeClass('ti-shield-lock text-danger').addClass('ti-lock-open text-success').css({'color': '#28a745', 'background': '#e6f4ea'});
                 $('#lockConfirmBtnAction').css('background', '#28a745').text('Unlock');
             }
@@ -754,12 +779,10 @@
         }
 
         function performLockToggle() {
-            isCardLocked = !isCardLocked;
-            document.querySelector('.status-badge').textContent = isCardLocked ? 'Locked (demo)' : 'Active (demo)';
-            document.getElementById('detailStatus').textContent = isCardLocked ? 'LOCKED (DEMO)' : 'ACTIVE (DEMO)'; 
+            isCardLocked = !isCardLocked; 
 
             $('#lockActions').hide();
-            $('#lockSuccessMessage').text(isCardLocked ? 'Demo card locked.' : 'Demo card unlocked.').fadeIn(200);
+            $('#lockSuccessMessage').text(isCardLocked ? 'Card locked successfully!' : 'Card unlocked successfully!').fadeIn(200);
 
             if (isCardLocked) {
                 $('#lockCardBtn').removeClass('lock').addClass('unlock');
